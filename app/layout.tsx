@@ -3,8 +3,8 @@ import "./globals.css";
 import { baseURL } from "@/baseUrl";
 
 export const metadata: Metadata = {
-  title: "ChatGPT App",
-  description: "Interactive ChatGPT app with buttons and links",
+  title: "Promocodes.com",
+  description: "Store coupons and deals — use in ChatGPT",
 };
 
 export default function RootLayout({
