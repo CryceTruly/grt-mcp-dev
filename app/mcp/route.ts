@@ -98,5 +98,23 @@ const handler = createMcpHandler(async (server) => {
   );
 });
 
-export const GET = handler;
+// GET: return 200 so connector validation (e.g. ChatGPT "Create app") succeeds.
+// mcp-handler returns 405 for GET; MCP protocol uses POST only.
+export async function GET() {
+  return new Response(
+    JSON.stringify({
+      protocol: "mcp",
+      transport: "streamable_http",
+      message: "Use POST for MCP requests.",
+    }),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    }
+  );
+}
+
 export const POST = handler;
