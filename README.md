@@ -6,7 +6,7 @@ A [ChatGPT Apps SDK](https://developers.openai.com/apps-sdk) compatible app buil
 
 - **Buttons**: Counter, reset, “Ask ChatGPT”, expand to fullscreen.
 - **Links**: Internal Next.js `Link` (e.g. to `/custom-page`) and external links (OpenAI Docs, Vercel). In ChatGPT, external links use `openExternal` when available.
-- **MCP tool**: `show_content` — call it from ChatGPT with a name to render the homepage in a widget.
+- **MCP tools**: `show_content` — render the homepage in a widget; **`get_coupons`** — ask e.g. “Dell coupons” and see a list with **Open offer** buttons for each coupon.
 
 ## Quick start
 
