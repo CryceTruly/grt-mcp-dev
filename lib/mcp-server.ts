@@ -156,7 +156,7 @@ export const mcpHandler = createMcpHandler(
       {
         title: couponsWidget.title,
         description:
-          "Get coupons and deals for a store. Use when the user asks for coupons (e.g. 'Dell coupons', 'Amazon coupons').",
+          "Get coupons and deals for a store. Use when the user asks for coupons (e.g. 'Dell coupons', 'Amazon coupons'). Each coupon shows 'Use code' or 'Get deal' depending on whether it has a discount code.",
         inputSchema: couponsInputSchema,
         _meta: widgetMeta(couponsWidget),
       },

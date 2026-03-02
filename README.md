@@ -6,7 +6,7 @@ A [ChatGPT Apps SDK](https://developers.openai.com/apps-sdk) compatible app buil
 
 - **Buttons**: Counter, reset, “Ask ChatGPT”, expand to fullscreen.
 - **Links**: Internal Next.js `Link` (e.g. to `/custom-page`) and external links (OpenAI Docs, Vercel). In ChatGPT, external links use `openExternal` when available.
-- **MCP tools**: `show_content` — render the homepage in a widget; **`get_coupons`** — ask e.g. “Dell coupons” and see a list with **Open offer** buttons for each coupon.
+- **MCP tools**: `show_content` — render the homepage in a widget; **`get_coupons`** — ask e.g. “Dell coupons” and see a list with **Use code** or **Get deal** buttons for each coupon.
 
 ## Quick start
 
@@ -40,7 +40,7 @@ The `get_coupons` tool fetches live coupons from the discountcodes.com backend w
 - **`DISCOUNTCODES_API_BASE`** (optional) — Default `https://backend.discountcodes.com`.
 - **`DISCOUNTCODES_CLIENT`** (optional) — Default `8`.
 
-Store details URL: `GET /api/v1/stores/{slug}?only_is_active=1&only_is_approved=0&client=8`. Coupons are taken from the response `.coupons` array and shown in the widget with **Open offer** (uses `custom_url`).
+Store details URL: `GET /api/v1/stores/{slug}?only_is_active=1&only_is_approved=0&client=8`. Coupons are taken from the response `.coupons` array and shown in the widget with **Use code** or **Get deal** (uses `custom_url`).
 
 ## Project layout
 
