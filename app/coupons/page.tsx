@@ -55,34 +55,14 @@ export default function CouponsPage() {
       style={{ fontFamily: "system-ui, sans-serif" }}
     >
       <div className="mx-auto max-w-2xl space-y-6">
-        {/* Store header — logo, name, visit shop link, validated count */}
-        <header className="flex flex-wrap items-center gap-4 border-b border-slate-600/40 pb-4">
-          {store?.logo_url && (
-            <img
-              src={store.logo_url}
-              alt=""
-              width={120}
-              height={120}
-              className="h-[120px] w-[120px] shrink-0 rounded-lg border border-slate-600/40 object-contain bg-[var(--card)]"
-            />
-          )}
-          <div className="min-w-0 flex-1">
-            <h1 className="text-2xl font-bold tracking-tight text-[var(--foreground)]">
-              {store?.name ?? "Store"} Coupons
-            </h1>
-            <p className="mt-1 text-sm text-[var(--muted)]">
-              {coupons.length} offer{coupons.length !== 1 ? "s" : ""} validated
-            </p>
-            {store?.affiliate_website_url && (
-              <button
-                type="button"
-                onClick={() => openExternal(store.affiliate_website_url!)}
-                className="mt-2 text-sm font-medium text-[var(--promo)] hover:underline"
-              >
-                Visit shop →
-              </button>
-            )}
-          </div>
+        {/* Store header — name and validated count only */}
+        <header className="border-b border-slate-600/40 pb-4">
+          <h1 className="text-2xl font-bold tracking-tight text-[var(--foreground)]">
+            {store?.name ?? "Store"} Coupons
+          </h1>
+          <p className="mt-1 text-sm text-[var(--muted)]">
+            {coupons.length} offer{coupons.length !== 1 ? "s" : ""} validated
+          </p>
         </header>
 
         {/* Coupon list — card style aligned with promocodes.com */}
@@ -119,11 +99,11 @@ export default function CouponsPage() {
                       </code>
                     </p>
                   )}
-                  {((coupon.clicks_count_today != null && coupon.clicks_count_today > 0) || coupon.expiry || (coupon.latest_savings != null && coupon.latest_savings > 0)) && (
+                  {((coupon.clicks_count_today != null && coupon.clicks_count_today > 0) ||
+                    (coupon.latest_savings != null && coupon.latest_savings > 0)) && (
                     <p className="mt-1 text-xs text-[var(--muted)]">
                       {[
                         coupon.clicks_count_today != null && coupon.clicks_count_today > 0 && "Working today",
-                        coupon.expiry && `Expires ${coupon.expiry}`,
                         coupon.latest_savings != null && coupon.latest_savings > 0 && `A shopper recently saved $${Number(coupon.latest_savings).toLocaleString()}`,
                       ]
                         .filter(Boolean)
@@ -134,7 +114,12 @@ export default function CouponsPage() {
                 <div className="shrink-0 sm:pl-4">
                   <button
                     type="button"
-                    onClick={() => openExternal(coupon.offerUrl)}
+                    onClick={() => {
+                      const trackingUrl = `https://www.promocodes.com/rc/${encodeURIComponent(
+                        coupon.id
+                      )}?merchantId=${encodeURIComponent(store?.id ?? "")}&utm_source=chatgpt-connector`;
+                      openExternal(trackingUrl);
+                    }}
                     className="btn-promo w-full whitespace-nowrap text-sm sm:w-auto"
                   >
                     {coupon.code ? "Use code" : "Get deal"}

@@ -135,7 +135,7 @@ export const mcpHandler = createMcpHandler(
       invoking: "Loading coupons...",
       invoked: "Coupons loaded",
       html: couponsHtml,
-      description: "Shows coupons for a store (e.g. Dell, Amazon). Each card shows title and description when available; a CTA of 'Use code' or 'Get deal' depending on whether the coupon has a valid discount_code; and meta line with Working today (when clicks_count_today > 0), expiry, and shopper savings copy ('A shopper recently saved $X') when latest_savings > 0.",
+      description: "Shows coupons for a store (e.g. Dell, Amazon). Each card shows title and description when available; a CTA of 'Use code' or 'Get deal' depending on whether the coupon has a valid discount_code; and meta line with Working today (when clicks_count_today > 0) and shopper savings copy ('A shopper recently saved $X') when latest_savings > 0.",
       widgetDomain: "https://promocodes.com",
     };
 

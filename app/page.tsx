@@ -9,36 +9,16 @@ const PROMOCODES_BASE = "https://www.promocodes.com";
 /** Preview of how the coupons widget looks (dummy store + sample coupon). */
 function WidgetPreview({ store }: { store: Store }) {
   const previewCoupons = store.coupons.slice(0, 2);
-  const visitUrl = store.affiliate_website_url ?? "#";
 
   return (
     <div className="rounded-xl border border-slate-600/40 bg-[var(--card)] p-4 shadow-sm">
-      <header className="mb-4 flex flex-wrap items-center gap-4 border-b border-slate-600/40 pb-4">
-        {store.logo_url && (
-          <img
-            src={store.logo_url}
-            alt=""
-            width={120}
-            height={120}
-            className="h-[120px] w-[120px] shrink-0 rounded-lg border border-slate-600/40 object-contain bg-[var(--card)]"
-          />
-        )}
-        <div className="min-w-0 flex-1">
-          <h3 className="text-xl font-bold text-[var(--foreground)]">
-            {store.name} Coupons
-          </h3>
-          <p className="mt-0.5 text-sm text-[var(--muted)]">
-            {store.coupons.length} offers validated
-          </p>
-          <a
-            href={visitUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-2 inline-block text-sm font-medium text-[var(--promo)] hover:underline"
-          >
-            Visit shop →
-          </a>
-        </div>
+      <header className="mb-4 border-b border-slate-600/40 pb-4">
+        <h3 className="text-xl font-bold text-[var(--foreground)]">
+          {store.name} Coupons
+        </h3>
+        <p className="mt-0.5 text-sm text-[var(--muted)]">
+          {store.coupons.length} offers validated
+        </p>
       </header>
       <ul className="space-y-2">
         {previewCoupons.map((coupon) => (

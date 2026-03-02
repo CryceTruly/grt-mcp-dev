@@ -47,7 +47,6 @@ function mapCoupon(c: ApiCoupon): Coupon {
     title: c.title ?? "Offer",
     offerUrl: c.custom_url ?? "https://www.promocodes.com",
     code: c.discount_code && c.discount_code.trim() !== "" ? c.discount_code : undefined,
-    expiry: c.expiration_date ?? undefined,
     description: c.description && c.description.trim() !== "" ? c.description : undefined,
     clicks_count_today: typeof c.clicks_count_today === "number" ? c.clicks_count_today : undefined,
     latest_savings: typeof c.latest_savings === "number" && c.latest_savings > 0 ? c.latest_savings : undefined,
