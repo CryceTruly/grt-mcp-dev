@@ -4,6 +4,9 @@ export type Coupon = {
   offerUrl: string;
   code?: string;
   expiry?: string;
+  description?: string;
+  clicks_count_today?: number;
+  latest_savings?: number;
 };
 
 export type Store = {

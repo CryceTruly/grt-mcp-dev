@@ -84,6 +84,11 @@ export default function CouponsPage() {
                   <p className="text-lg font-semibold leading-snug text-[var(--foreground)]">
                     {coupon.title}
                   </p>
+                  {coupon.description && (
+                    <p className="mt-1 text-sm text-[var(--muted)]">
+                      {coupon.description}
+                    </p>
+                  )}
                   {coupon.code && (
                     <p className="mt-1.5 text-sm text-[var(--muted)]">
                       Code:{" "}
@@ -92,9 +97,15 @@ export default function CouponsPage() {
                       </code>
                     </p>
                   )}
-                  {coupon.expiry && (
-                    <p className="mt-0.5 text-xs text-[var(--muted)]">
-                      Expires {coupon.expiry}
+                  {((coupon.clicks_count_today != null && coupon.clicks_count_today > 0) || coupon.expiry || (coupon.latest_savings != null && coupon.latest_savings > 0)) && (
+                    <p className="mt-1 text-xs text-[var(--muted)]">
+                      {[
+                        coupon.clicks_count_today != null && coupon.clicks_count_today > 0 && "Working today",
+                        coupon.expiry && `Expires ${coupon.expiry}`,
+                        coupon.latest_savings != null && coupon.latest_savings > 0 && `A shopper recently saved $${Number(coupon.latest_savings).toLocaleString()}`,
+                      ]
+                        .filter(Boolean)
+                        .join(" · ")}
                     </p>
                   )}
                 </div>
@@ -104,7 +115,7 @@ export default function CouponsPage() {
                     onClick={() => openExternal(coupon.offerUrl)}
                     className="btn-promo w-full whitespace-nowrap text-sm sm:w-auto"
                   >
-                    Use Coupon
+                    {coupon.code ? "Use code" : "Get deal"}
                   </button>
                 </div>
               </div>

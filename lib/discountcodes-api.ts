@@ -17,10 +17,12 @@ const CLIENT = process.env.DISCOUNTCODES_CLIENT ?? "8";
 type ApiCoupon = {
   id: number;
   title: string;
-  description?: string;
+  description?: string | null;
   discount_code?: string | null;
   expiration_date?: string | null;
   custom_url?: string | null;
+  clicks_count_today?: number;
+  latest_savings?: number | null;
   [key: string]: unknown;
 };
 
@@ -44,6 +46,9 @@ function mapCoupon(c: ApiCoupon): Coupon {
     offerUrl: c.custom_url ?? "https://www.promocodes.com",
     code: c.discount_code && c.discount_code.trim() !== "" ? c.discount_code : undefined,
     expiry: c.expiration_date ?? undefined,
+    description: c.description && c.description.trim() !== "" ? c.description : undefined,
+    clicks_count_today: typeof c.clicks_count_today === "number" ? c.clicks_count_today : undefined,
+    latest_savings: typeof c.latest_savings === "number" && c.latest_savings > 0 ? c.latest_savings : undefined,
   };
 }
 
