@@ -30,10 +30,30 @@ function widgetMeta(widget: ContentWidget) {
   } as const;
 }
 
+/** App origin for widget CSP (required for app submission). */
+function getWidgetAppOrigin(): string {
+  if (baseURL) return new URL(baseURL).origin;
+  return "https://www.promocodes.com";
+}
+
+function widgetCspMeta(domain: string) {
+  const appOrigin = getWidgetAppOrigin();
+  return {
+    ui: {
+      csp: {
+        connectDomains: [appOrigin],
+        resourceDomains: [appOrigin, "https://*.oaistatic.com"],
+      },
+      domain,
+    },
+  } as const;
+}
+
 export const mcpHandler = createMcpHandler(
   async (server) => {
     const html = await getAppsSdkCompatibleHtml(baseURL, "/");
 
+    const appDomain = getWidgetAppOrigin();
     const contentWidget: ContentWidget = {
       id: "show_content",
       title: "Show Content",
@@ -42,7 +62,7 @@ export const mcpHandler = createMcpHandler(
       invoked: "Content loaded",
       html,
       description: "Displays the homepage content",
-      widgetDomain: "https://nextjs.org/docs",
+      widgetDomain: appDomain,
     };
 
     server.registerResource(
@@ -55,6 +75,7 @@ export const mcpHandler = createMcpHandler(
         _meta: {
           "openai/widgetDescription": contentWidget.description,
           "openai/widgetPrefersBorder": true,
+          ...widgetCspMeta(contentWidget.widgetDomain),
         },
       },
       async (uri) => ({
@@ -67,6 +88,7 @@ export const mcpHandler = createMcpHandler(
               "openai/widgetDescription": contentWidget.description,
               "openai/widgetPrefersBorder": true,
               "openai/widgetDomain": contentWidget.widgetDomain,
+              ...widgetCspMeta(contentWidget.widgetDomain),
             },
           },
         ],
@@ -127,6 +149,7 @@ export const mcpHandler = createMcpHandler(
         _meta: {
           "openai/widgetDescription": couponsWidget.description,
           "openai/widgetPrefersBorder": true,
+          ...widgetCspMeta(couponsWidget.widgetDomain),
         },
       },
       async (uri) => ({
@@ -139,6 +162,7 @@ export const mcpHandler = createMcpHandler(
               "openai/widgetDescription": couponsWidget.description,
               "openai/widgetPrefersBorder": true,
               "openai/widgetDomain": couponsWidget.widgetDomain,
+              ...widgetCspMeta(couponsWidget.widgetDomain),
             },
           },
         ],

@@ -55,14 +55,34 @@ export default function CouponsPage() {
       style={{ fontFamily: "system-ui, sans-serif" }}
     >
       <div className="mx-auto max-w-2xl space-y-6">
-        {/* Store header — matches main site "X offers" / validated feel */}
-        <header className="border-b border-slate-600/40 pb-4">
-          <h1 className="text-2xl font-bold tracking-tight text-[var(--foreground)]">
-            {store?.name ?? "Store"} Coupons
-          </h1>
-          <p className="mt-1 text-sm text-[var(--muted)]">
-            {coupons.length} offer{coupons.length !== 1 ? "s" : ""} validated
-          </p>
+        {/* Store header — logo, name, visit shop link, validated count */}
+        <header className="flex flex-wrap items-center gap-4 border-b border-slate-600/40 pb-4">
+          {store?.logo_url && (
+            <img
+              src={store.logo_url}
+              alt=""
+              width={120}
+              height={120}
+              className="h-[120px] w-[120px] shrink-0 rounded-lg border border-slate-600/40 object-contain bg-[var(--card)]"
+            />
+          )}
+          <div className="min-w-0 flex-1">
+            <h1 className="text-2xl font-bold tracking-tight text-[var(--foreground)]">
+              {store?.name ?? "Store"} Coupons
+            </h1>
+            <p className="mt-1 text-sm text-[var(--muted)]">
+              {coupons.length} offer{coupons.length !== 1 ? "s" : ""} validated
+            </p>
+            {store?.affiliate_website_url && (
+              <button
+                type="button"
+                onClick={() => openExternal(store.affiliate_website_url!)}
+                className="mt-2 text-sm font-medium text-[var(--promo)] hover:underline"
+              >
+                Visit shop →
+              </button>
+            )}
+          </div>
         </header>
 
         {/* Coupon list — card style aligned with promocodes.com */}

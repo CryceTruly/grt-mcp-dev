@@ -14,6 +14,8 @@ export type Store = {
   name: string;
   slug: string;
   coupons: Coupon[];
+  logo_url?: string;
+  affiliate_website_url?: string;
 };
 
 export const stores: Store[] = [
@@ -21,6 +23,8 @@ export const stores: Store[] = [
     id: "dell",
     name: "Dell",
     slug: "dell",
+    logo_url: "https://placehold.co/120x120?text=Dell",
+    affiliate_website_url: "https://www.dell.com",
     coupons: [
       {
         id: "dell-1",
@@ -51,6 +55,8 @@ export const stores: Store[] = [
     id: "amazon",
     name: "Amazon",
     slug: "amazon",
+    logo_url: "https://placehold.co/120x120?text=Amazon",
+    affiliate_website_url: "https://www.amazon.com",
     coupons: [
       {
         id: "amazon-1",
@@ -72,6 +78,8 @@ export const stores: Store[] = [
     id: "bestbuy",
     name: "Best Buy",
     slug: "bestbuy",
+    logo_url: "https://placehold.co/120x120?text=Best+Buy",
+    affiliate_website_url: "https://www.bestbuy.com",
     coupons: [
       {
         id: "bestbuy-1",
@@ -93,6 +101,8 @@ export const stores: Store[] = [
     id: "nike",
     name: "Nike",
     slug: "nike",
+    logo_url: "https://placehold.co/120x120?text=Nike",
+    affiliate_website_url: "https://www.nike.com",
     coupons: [
       {
         id: "nike-1",

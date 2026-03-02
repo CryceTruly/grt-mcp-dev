@@ -30,6 +30,8 @@ type ApiStore = {
   id: number;
   name: string;
   slug: string;
+  logo_url?: string | null;
+  affiliate_website_url?: string | null;
   coupons?: ApiCoupon[];
   number_of_coupons?: number;
   [key: string]: unknown;
@@ -96,6 +98,8 @@ export async function fetchStoreAndCoupons(searchText: string): Promise<StoreWit
     name: data.name ?? searchText,
     slug: data.slug ?? slug,
     coupons,
+    logo_url: data.logo_url && data.logo_url.trim() !== "" ? data.logo_url : undefined,
+    affiliate_website_url: data.affiliate_website_url && data.affiliate_website_url.trim() !== "" ? data.affiliate_website_url : undefined,
   };
 
   return { store, coupons };
