@@ -20,10 +20,9 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Connect to ChatGPT
 
 1. Deploy the app (e.g. [Vercel](https://vercel.com), DigitalOcean).
-2. In ChatGPT: **Settings → Connectors → Create** and add your MCP server URL.  
-   **Use the SSE endpoint** (ChatGPT expects `text/event-stream`):  
-   `https://your-app.example.com/sse`  
-   (Use `/mcp` only if your client uses streamable HTTP with POST.)
+2. In ChatGPT: **Settings → Connectors → Create** and add your MCP server URL:  
+   `https://your-app.example.com/mcp`  
+   (GET returns minimal SSE for validation; MCP runs over POST.)
 
 Requires [developer mode](https://developers.openai.com/apps-sdk/deploy/connect-chatgpt) for MCP.
 
@@ -35,7 +34,7 @@ On non-Vercel hosts the app uses **same-origin** assets by default, so CSS and J
 
 - `app/page.tsx` — Home: buttons (counter, expand, ask ChatGPT) and links.
 - `app/custom-page/page.tsx` — Second page (internal link target).
-- `app/mcp/route.ts` — MCP streamable HTTP (POST). `app/sse/route.ts` — MCP SSE (GET/POST) for ChatGPT connector.
+- `app/mcp/route.ts` — MCP endpoint (GET = minimal SSE for connector validation, POST = streamable HTTP).
 - `lib/mcp-server.ts` — Shared MCP server setup (tools + widget).
 - `app/layout.tsx` — SDK bootstrap for iframe/history/fetch.
 - `app/hooks/` — ChatGPT SDK hooks (`useWidgetProps`, `useOpenExternal`, etc.).

@@ -106,5 +106,6 @@ export const mcpHandler = createMcpHandler(
   {
     streamableHttpEndpoint: "/mcp",
     sseEndpoint: "/sse",
+    disableSse: true, // SSE transport requires Redis; GET /mcp returns minimal SSE for connector validation only
   }
 );
