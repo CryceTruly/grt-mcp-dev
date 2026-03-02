@@ -46,3 +46,4 @@ On non-Vercel hosts the app uses **same-origin** assets by default, so CSS and J
 - [OpenAI Apps SDK](https://developers.openai.com/apps-sdk)
 - [MCP Server Guide](https://developers.openai.com/apps-sdk/build/mcp-server)
 - [Starter repo](https://github.com/vercel-labs/chatgpt-apps-sdk-nextjs-starter)
+# pmc-dev-mcp
