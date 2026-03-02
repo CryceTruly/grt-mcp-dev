@@ -3,46 +3,75 @@
 import { useMaxHeight } from "./hooks";
 import { stores } from "@/lib/promocodes-data";
 
+const PROMOCODES_BASE = "https://www.promocodes.com";
+
 export default function Home() {
   const maxHeight = useMaxHeight() ?? undefined;
 
   return (
     <main
-      className="min-h-screen p-6"
+      className="min-h-screen p-6 bg-[var(--background)]"
       style={{ maxHeight: maxHeight ?? undefined, overflow: "auto" }}
     >
       <div className="mx-auto max-w-2xl space-y-8">
-        <section className="rounded-xl bg-[var(--card)] p-8 shadow-lg text-center">
-          <h1 className="text-3xl font-bold text-[var(--foreground)]">
+        {/* Hero — aligns with main site "Today's Top Coupons" tone */}
+        <section className="rounded-2xl border border-slate-600/40 bg-[var(--card)] p-8 text-center shadow-sm">
+          <h1 className="text-3xl font-bold tracking-tight text-[var(--foreground)]">
             Promocodes.com
           </h1>
           <p className="mt-3 text-[var(--muted)]">
-            Store coupons and deals. Use in ChatGPT: add this app as a connector, then ask e.g. &quot;Dell coupons&quot; or &quot;Amazon coupons&quot; to see a list with <strong className="text-[var(--foreground)]">Open offer</strong> buttons.
+            Store coupons and deals in ChatGPT. Add this app as a connector, then
+            ask for any store — e.g. &quot;Dell coupons&quot; or &quot;Amazon
+            coupons&quot; — to see offers with <strong className="text-[var(--foreground)]">Use Coupon</strong> buttons.
           </p>
+          <a
+            href={PROMOCODES_BASE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 inline-block text-sm font-medium text-[var(--promo)] hover:underline"
+          >
+            Visit Promocodes.com →
+          </a>
         </section>
 
+        {/* Example prompts — card-style like main site store links */}
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold">Example prompts in ChatGPT</h2>
+          <h2 className="text-lg font-semibold text-[var(--foreground)]">
+            Try in ChatGPT
+          </h2>
           <ul className="flex flex-wrap gap-2">
             {stores.map((store) => (
-              <li
-                key={store.id}
-                className="rounded-lg border border-slate-600/40 bg-[var(--card)] px-4 py-2 font-medium text-[var(--foreground)]"
-              >
-                &quot;{store.name} coupons&quot;
+              <li key={store.id}>
+                <span className="inline-flex rounded-xl border border-slate-600/40 bg-[var(--card)] px-4 py-2.5 text-sm font-medium text-[var(--foreground)] shadow-sm">
+                  &quot;{store.name} coupons&quot;
+                </span>
               </li>
             ))}
           </ul>
         </section>
 
-        <section className="rounded-lg border border-slate-600/50 bg-slate-800/30 px-4 py-3 text-sm text-[var(--muted)]">
-          <p>
-            Connector URL: <code className="text-sky-400">/mcp</code>
+        {/* Connector setup */}
+        <section className="rounded-xl border border-slate-600/50 bg-slate-800/30 px-4 py-4 text-sm text-[var(--muted)]">
+          <p className="font-medium text-[var(--foreground)]">
+            Connector URL: <code className="rounded bg-slate-700/80 px-1.5 py-0.5 text-[var(--promo)]">/mcp</code>
           </p>
-          <p className="mt-1">
-            In ChatGPT: Settings → Connectors → Create → add your app URL with <code className="text-sky-400">/mcp</code>, then ask for any store coupons above.
+          <p className="mt-2">
+            In ChatGPT: Settings → Connectors → Create → enter your app URL
+            with <code className="rounded bg-slate-700/80 px-1.5 py-0.5">/mcp</code>, then ask for any store coupons above.
           </p>
         </section>
+
+        <p className="text-center text-xs text-[var(--muted)]">
+          Powered by{" "}
+          <a
+            href={PROMOCODES_BASE}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--promo)] hover:underline"
+          >
+            Promocodes.com
+          </a>
+        </p>
       </div>
     </main>
   );

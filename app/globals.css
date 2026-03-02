@@ -9,6 +9,9 @@
   --accent-hover: #7dd3fc;
   --card: #1e293b;
   --muted: #94a3b8;
+  /* Promocodes.com-aligned: savings / coupon CTA */
+  --promo: #059669;
+  --promo-hover: #10b981;
 }
 
 @media (prefers-color-scheme: light) {
@@ -17,6 +20,8 @@
     --foreground: #0f172a;
     --card: #e2e8f0;
     --muted: #64748b;
+    --promo: #059669;
+    --promo-hover: #047857;
   }
 }
 
@@ -33,6 +38,14 @@ body {
 
   .btn-primary {
     @apply btn bg-sky-500 text-white hover:bg-sky-600 focus:ring-sky-500;
+  }
+
+  .btn-promo {
+    @apply btn font-semibold text-white focus:ring-[var(--promo)];
+    background: var(--promo);
+  }
+  .btn-promo:hover {
+    background: var(--promo-hover);
   }
 
   .btn-secondary {
