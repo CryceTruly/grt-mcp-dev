@@ -24,6 +24,10 @@ Open [http://localhost:3000](http://localhost:3000).
 
 Requires [developer mode](https://developers.openai.com/apps-sdk/deploy/connect-chatgpt) for MCP.
 
+## Deploy to DigitalOcean / other hosts
+
+On non-Vercel hosts the app uses **same-origin** assets by default, so CSS and JS load correctly. Optional: set `NEXT_PUBLIC_APP_URL` (or `APP_URL`) to your full app URL (e.g. `https://next-mcp-imo6a.ondigitalocean.app`) if you need a fixed base URL for widgets.
+
 ## Project layout
 
 - `app/page.tsx` — Home: buttons (counter, expand, ask ChatGPT) and links.
