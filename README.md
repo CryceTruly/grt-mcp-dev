@@ -32,6 +32,16 @@ On non-Vercel hosts the app uses **same-origin** assets by default, so CSS and J
 
 **If "Add connector" times out:** DigitalOcean may sleep the app (cold start) or enforce a ~60s request timeout. Turn on **Always-on** (or disable sleep) in the app settings so the first request responds quickly. The MCP GET response closes after 55s to stay under common platform limits.
 
+## Coupons API (Promocodes.com branch)
+
+The `get_coupons` tool fetches live coupons from the discountcodes.com backend when configured. Set in your environment (e.g. DigitalOcean app env vars):
+
+- **`DISCOUNTCODES_API_BEARER_TOKEN`** — Bearer token for `https://backend.discountcodes.com` (store details + optional search). If unset, the app falls back to built-in dummy store data.
+- **`DISCOUNTCODES_API_BASE`** (optional) — Default `https://backend.discountcodes.com`.
+- **`DISCOUNTCODES_CLIENT`** (optional) — Default `8`.
+
+Store details URL: `GET /api/v1/stores/{slug}?only_is_active=1&only_is_approved=0&client=8`. Coupons are taken from the response `.coupons` array and shown in the widget with **Open offer** (uses `custom_url`).
+
 ## Project layout
 
 - `app/page.tsx` — Home: buttons (counter, expand, ask ChatGPT) and links.

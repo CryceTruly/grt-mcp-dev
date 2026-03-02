@@ -1,4 +1,5 @@
 import { baseURL } from "@/baseUrl";
+import { fetchStoreAndCoupons } from "@/lib/discountcodes-api";
 import { findStoresAndCoupons } from "@/lib/promocodes-data";
 import { createMcpHandler } from "mcp-handler";
 import { z } from "zod";
@@ -161,7 +162,10 @@ export const mcpHandler = createMcpHandler(
       },
       async (args) => {
         const storeQuery = (args as { store: string }).store;
-        const result = findStoresAndCoupons(storeQuery);
+        let result = await fetchStoreAndCoupons(storeQuery);
+        if (!result) {
+          result = findStoresAndCoupons(storeQuery);
+        }
         if (!result) {
           return {
             content: [
