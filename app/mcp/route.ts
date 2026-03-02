@@ -1,10 +1,10 @@
 import { mcpHandler } from "@/lib/mcp-server";
 
-// Allow long-lived SSE and MCP POST (avoid platform timeout)
-export const maxDuration = 300; // 5 min (Vercel Pro; reduce if on Hobby)
+// Keep under DigitalOcean/common 60s request timeout so "Add connector" doesn't time out
+export const maxDuration = 60;
 
-const SSE_KEEPALIVE_MS = 20_000;
-const SSE_MAX_AGE_MS = 4 * 60 * 1000; // 4 min (under common platform limits)
+const SSE_KEEPALIVE_MS = 15_000; // every 15s
+const SSE_MAX_AGE_MS = 55_000;   // close after 55s (under 60s platform limit)
 
 // GET: SSE with keep-alive so ChatGPT backend doesn't timeout. MCP protocol runs over POST.
 export async function GET(request: Request) {

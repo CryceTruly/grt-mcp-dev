@@ -28,7 +28,9 @@ Requires [developer mode](https://developers.openai.com/apps-sdk/deploy/connect-
 
 ## Deploy to DigitalOcean / other hosts
 
-On non-Vercel hosts the app uses **same-origin** assets by default, so CSS and JS load correctly. Optional: set `NEXT_PUBLIC_APP_URL` (or `APP_URL`) to your full app URL (e.g. `https://next-mcp-imo6a.ondigitalocean.app`) if you need a fixed base URL for widgets.
+On non-Vercel hosts the app uses **same-origin** assets by default, so CSS and JS load correctly. Optional: set `NEXT_PUBLIC_APP_URL` (or `APP_URL`) to your full app URL (e.g. `https://your-app.ondigitalocean.app`) if you need a fixed base URL for widgets.
+
+**If "Add connector" times out:** DigitalOcean may sleep the app (cold start) or enforce a ~60s request timeout. Turn on **Always-on** (or disable sleep) in the app settings so the first request responds quickly. The MCP GET response closes after 55s to stay under common platform limits.
 
 ## Project layout
 
