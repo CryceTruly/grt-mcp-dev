@@ -6,6 +6,7 @@ import type { Coupon, Store } from "@/lib/promocodes-data";
 type CouponsToolOutput = {
   store?: Store;
   coupons?: Coupon[];
+  structuredContent?: { store?: Store; coupons?: Coupon[] };
   result?: { structuredContent?: { store?: Store; coupons?: Coupon[] } };
 };
 
@@ -15,9 +16,10 @@ export default function CouponsPage() {
   const openExternal = useOpenExternal();
   const data = useWidgetProps<CouponsToolOutput>();
 
-  const store = data?.store ?? data?.result?.structuredContent?.store;
+  const store =
+    data?.store ?? data?.structuredContent?.store ?? data?.result?.structuredContent?.store;
   const coupons =
-    data?.coupons ?? data?.result?.structuredContent?.coupons ?? [];
+    data?.coupons ?? data?.structuredContent?.coupons ?? data?.result?.structuredContent?.coupons ?? [];
 
   if (!store && coupons.length === 0) {
     return (

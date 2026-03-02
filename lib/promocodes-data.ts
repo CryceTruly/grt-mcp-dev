@@ -25,6 +25,7 @@ export const stores: Store[] = [
       {
         id: "dell-1",
         title: "10% off select monitors",
+        description: "Apply this code at checkout for 10% off select monitors.",
         offerUrl: "https://www.dell.com/en-us/shop/deals",
         code: "MONITOR10",
         expiry: "2025-12-31",
@@ -32,12 +33,14 @@ export const stores: Store[] = [
       {
         id: "dell-2",
         title: "Free shipping on orders over $49",
+        description: "Free standard shipping when you spend $49 or more.",
         offerUrl: "https://www.dell.com/en-us/shop",
         expiry: "Ongoing",
       },
       {
         id: "dell-3",
         title: "Up to $200 off XPS laptops",
+        description: "Save up to $200 on XPS laptops when you use this offer.",
         offerUrl: "https://www.dell.com/en-us/shop/laptops/xps",
         code: "XPS200",
         expiry: "2025-06-30",
@@ -52,12 +55,14 @@ export const stores: Store[] = [
       {
         id: "amazon-1",
         title: "$10 off first Subscribe & Save order",
+        description: "New subscribers get $10 off their first Subscribe & Save order.",
         offerUrl: "https://www.amazon.com/gp/subscribe-and-save",
         expiry: "Ongoing",
       },
       {
         id: "amazon-2",
         title: "Prime members: 5% back on Whole Foods",
+        description: "Prime members earn 5% back on Whole Foods Market purchases.",
         offerUrl: "https://www.amazon.com/wholefoods",
         expiry: "Ongoing",
       },
@@ -71,12 +76,14 @@ export const stores: Store[] = [
       {
         id: "bestbuy-1",
         title: "15% off for students",
+        description: "Verify your student status to get 15% off at checkout.",
         offerUrl: "https://www.bestbuy.com/student",
         expiry: "2025-12-31",
       },
       {
         id: "bestbuy-2",
         title: "Free installation on TV purchase over $999",
+        description: "Free standard installation when you buy a TV over $999.",
         offerUrl: "https://www.bestbuy.com/site/tvs",
         expiry: "Ongoing",
       },
@@ -90,12 +97,14 @@ export const stores: Store[] = [
       {
         id: "nike-1",
         title: "Members get 25% off first order",
+        description: "Join Nike Membership and get 25% off your first order.",
         offerUrl: "https://www.nike.com/membership",
         expiry: "Ongoing",
       },
       {
         id: "nike-2",
         title: "Free shipping on orders $75+",
+        description: "Free standard shipping when you spend $75 or more.",
         offerUrl: "https://www.nike.com",
         expiry: "Ongoing",
       },
